@@ -1,4 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION["username"])) {
+  header("location:index.php");
+}
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,12 +65,12 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="ck-editor.php">Add Notice</a>
-			     
-        </div>
+
+          </div>
       </li>
 
       <!-- Nav Item - Charts -->
-   <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>News and events</span>
@@ -72,10 +78,10 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="ck-editor.php">Add News and events</a>
-        </div>
+          </div>
       </li>
 
-   
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -129,7 +135,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION["username"] ?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
