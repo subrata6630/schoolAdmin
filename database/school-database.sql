@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jul 17, 2019 at 07:40 AM
--- Server version: 8.0.12
--- PHP Version: 7.2.10
+-- Host: localhost:3306
+-- Generation Time: Jul 21, 2019 at 03:46 PM
+-- Server version: 5.7.19
+-- PHP Version: 7.1.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,40 +25,84 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery`
+-- Table structure for table `accounts`
 --
 
-DROP TABLE IF EXISTS `gallery`;
-CREATE TABLE IF NOT EXISTS `gallery` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` text NOT NULL,
-  `date` datetime NOT NULL,
-  `image` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `accounts` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `username`, `password`, `email`) VALUES
+(1, 'subrata6630', 'Think@#9090', 'subrata6630@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `gallery`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `gallery` (
+  `id` int(11) NOT NULL,
+  `image` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `users`
+-- Table structure for table `notice`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
-(1, 'subrata6630', '5fb64e48915666d82bd3dcdd2b597afc', '2019-07-17 09:57:39');
+CREATE TABLE `notice` (
+  `id` int(11) DEFAULT NULL,
+  `title` varchar(225) NOT NULL,
+  `body` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `gallery`
+--
+ALTER TABLE `gallery`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `notice`
+--
+ALTER TABLE `notice`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `gallery`
+--
+ALTER TABLE `gallery`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
